@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GoHomeFill } from "react-icons/go";
 import { MdOutlineRoundaboutRight } from "react-icons/md";
 import { GrContact } from "react-icons/gr";
@@ -12,6 +12,13 @@ import { IoAlbumsSharp } from "react-icons/io5";
 
 const Sidebar = () => {
   const [menuOpen, setMenuOpen] = useState(true);
+
+  useEffect(()=>{
+     let screenSize = screen.availWidth;
+     if(screenSize < 1024){
+      setMenuOpen(false);
+     }
+  }, [])
 
   const menuHandler = () => {
     setMenuOpen((prev) => !prev);
