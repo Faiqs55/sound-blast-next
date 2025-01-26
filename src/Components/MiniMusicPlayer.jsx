@@ -54,19 +54,19 @@ const MiniMusicPlayer = ({ song }) => {
   };
 
   return (
-    <div className="flex md:items-center justify-between p-5 flex-col lg:gap-0 gap-8 md:flex-row">
+    <div className="flex md:items-center justify-between p-5 flex-col lg:gap-0 gap-6 md:flex-row">
       <div className="flex flex-col gap-2">
-        <h3 className="font-semibold">Now Playing:</h3>
+        <h3 className="font-semibold hidden md:block">Now Playing:</h3>
         <div className="flex gap-2 items-center">
-          <img className="w-[60px] rounded-lg" src={song.img} alt="" />
+          <img className="w-[40px] md:w-[60px] rounded-lg" src={song.img} alt="" />
           <div className="flex flex-col">
-            <span className="text-sm font-semibold">{song.title}</span>
-            <span className="text-xs text-gray-400">{song.artist}</span>
+            <span className="text-xs md:text-sm font-semibold">{song.title}</span>
+            <span className="text-[8px] md:text-xs text-gray-400">{song.artist}</span>
           </div>
         </div>
       </div>
       <div className="flex flex-col gap-4 items-center">
-        <div className="flex gap-4 text-xl">
+        <div className="flex gap-4 md:text-xl">
           <button className="text-gray-400 text-base">
             <CiShuffle />
           </button>
@@ -98,7 +98,7 @@ const MiniMusicPlayer = ({ song }) => {
           <span
             onClick={handleProgressClick}
             ref={progressRef}
-            className="cursor-pointer hover:h-[8px] duration-200 w-[150px] lg:w-[250px] bg-gray-600 relative h-[3px] rounded-full"
+            className="cursor-pointer hover:h-[8px] duration-200 w-[230px] md:w-[150px] lg:w-[250px] bg-gray-600 relative h-[3px] rounded-full"
           >
             <span
               style={{ width: `${(currentTime / duration) * 100}%` }}
@@ -108,7 +108,7 @@ const MiniMusicPlayer = ({ song }) => {
           <span className="text-xs text-gray-400">{formatTime(duration)}</span>
         </div>
       </div>
-      <div className="flex gap-4 md:flex-row flex-row-reverse self-start">
+      <div className="md:flex gap-4 hidden">
         <IoLogOutOutline />
         <FaBluetoothB />
         <div className="flex items-center gap-2">
