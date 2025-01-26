@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         {children}
         </div>
         {/* MUSIC CONTAINER */}
-        <div className="music-container absolute bg-black w-full bottom-0 z-[10000] text-white">
+        <div className="music-container fixed bg-black w-full bottom-0 z-[10000] text-white">
            <MiniMusicPlayer song={data[0]}/>
         </div>
       </body>
