@@ -16,6 +16,7 @@ const MiniMusicPlayer = ({ song }) => {
   const [songPLaying, setSongPLaing] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     const audioTag = audioRef.current;
@@ -32,6 +33,30 @@ const MiniMusicPlayer = ({ song }) => {
     audioRef.current.currentTime = newTime;
     setCurrentTime(newTime);
   };
+  const handleProgressDrag = (e) => {
+    const progressBar = progressRef.current;
+    const rect = progressBar.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clickX = clientX - rect.left;
+    const width = rect.width;
+    const newTime = (clickX / width) * duration;
+
+    setCurrentTime(newTime);
+    audioRef.current.currentTime = newTime;
+  };
+
+  const handleDragStart = (e) => {
+    setIsDragging(true);
+    handleProgressDrag(e)
+  }
+  const handleDragMove = (e) => {
+    if(isDragging){
+      handleProgressDrag(e)
+    }
+  }
+  const handleDragEnd = () => {
+    setIsDragging(false)
+  }
 
   const playSong = () => {
     if (songPLaying) {
@@ -96,6 +121,12 @@ const MiniMusicPlayer = ({ song }) => {
             {formatTime(currentTime)}
           </span>
           <span
+          onMouseDown={handleDragStart}
+          onMouseMove={handleDragMove}
+          onMouseUp={handleDragEnd}
+          onTouchStart={handleDragStart}
+        onTouchMove={handleDragMove}
+        onTouchEnd={handleDragEnd}
             onClick={handleProgressClick}
             ref={progressRef}
             className="cursor-pointer hover:h-[8px] duration-200 w-[230px] md:w-[150px] lg:w-[250px] bg-gray-600 relative h-[3px] rounded-full"
