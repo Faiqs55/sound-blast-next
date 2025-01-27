@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import { IoIosSkipForward } from "react-icons/io";
 import { IoIosSkipBackward } from "react-icons/io";
@@ -13,25 +13,24 @@ import { IoMdPause } from "react-icons/io";
 import { useSelector } from "react-redux";
 
 const MiniMusicPlayer = () => {
-  const song = useSelector(state => state.miniPlayer.currSong);
+  const song = useSelector((state) => state.miniPlayer.currSong);
   const audioRef = useRef(null);
   const progressRef = useRef(null);
   const [songPLaying, setSongPLaing] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  if(!song){
-    return
+  if (!song) {
+    return;
   }
-  
-  const handleMetaDataLoad = ()=>{
-        const audioTag = audioRef.current;
-          if(audioTag){
-            setDuration(audioTag.duration || 0);
-          }
 
-      }
-
+  const handleMetaDataLoad = () => {
+    setSongPLaing(false);
+    const audioTag = audioRef.current;
+    if (audioTag) {
+      setDuration(audioTag.duration || 0);
+    }
+  };
 
   const handleProgressClick = (e) => {
     const progressBar = progressRef.current;
@@ -57,16 +56,16 @@ const MiniMusicPlayer = () => {
 
   const handleDragStart = (e) => {
     setIsDragging(true);
-    handleProgressDrag(e)
-  }
+    handleProgressDrag(e);
+  };
   const handleDragMove = (e) => {
-    if(isDragging){
-      handleProgressDrag(e)
+    if (isDragging) {
+      handleProgressDrag(e);
     }
-  }
+  };
   const handleDragEnd = () => {
-    setIsDragging(false)
-  }
+    setIsDragging(false);
+  };
 
   const playSong = () => {
     if (songPLaying) {
@@ -85,8 +84,6 @@ const MiniMusicPlayer = () => {
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    console.log('playing');
-    
     return `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
   };
 
@@ -95,10 +92,18 @@ const MiniMusicPlayer = () => {
       <div className="flex flex-col gap-2">
         <h3 className="font-semibold hidden md:block">Now Playing:</h3>
         <div className="flex gap-2 items-center">
-          <img className="w-[40px] md:w-[60px] rounded-lg" src={song.img} alt="" />
+          <img
+            className="w-[40px] md:w-[60px] rounded-lg"
+            src={song.img}
+            alt=""
+          />
           <div className="flex flex-col">
-            <span className="text-xs md:text-sm font-semibold">{song.title}</span>
-            <span className="text-[8px] md:text-xs text-gray-400">{song.artist}</span>
+            <span className="text-xs md:text-sm font-semibold">
+              {song.title}
+            </span>
+            <span className="text-[8px] md:text-xs text-gray-400">
+              {song.artist}
+            </span>
           </div>
         </div>
       </div>
@@ -114,7 +119,7 @@ const MiniMusicPlayer = () => {
             onClick={playSong}
             className="p-2 pl-3 hover:scale-[1.1] bg-white text-black rounded-full"
           >
-            {songPLaying && <IoMdPause/>}
+            {songPLaying && <IoMdPause />}
             {!songPLaying && <FaPlay />}
           </button>
           <button>
@@ -135,12 +140,12 @@ const MiniMusicPlayer = () => {
             {formatTime(currentTime)}
           </span>
           <span
-          onMouseDown={handleDragStart}
-          onMouseMove={handleDragMove}
-          onMouseUp={handleDragEnd}
-          onTouchStart={handleDragStart}
-        onTouchMove={handleDragMove}
-        onTouchEnd={handleDragEnd}
+            onMouseDown={handleDragStart}
+            onMouseMove={handleDragMove}
+            onMouseUp={handleDragEnd}
+            onTouchStart={handleDragStart}
+            onTouchMove={handleDragMove}
+            onTouchEnd={handleDragEnd}
             onClick={handleProgressClick}
             ref={progressRef}
             className="cursor-pointer hover:h-[8px] duration-200 w-[230px] md:w-[150px] lg:w-[250px] bg-gray-600 relative h-[3px] rounded-full"

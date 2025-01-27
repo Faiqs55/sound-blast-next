@@ -84,7 +84,7 @@ export const songs = [
     img: "/song-cover/lv.jpg",
     title: "Love Story",
     artist: "Indiala",
-    audio: '/songs/lv.mp3'
+    audio: '/songs/ls.mp3'
   },
   {
     id: 7,
