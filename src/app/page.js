@@ -3,10 +3,10 @@ import BreadCrumbs from "@/Components/BreadCrumbs";
 import Footer from "@/Components/Footer";
 import MusicCard from "@/Components/MusicCard";
 import Slider from "@/Components/Slider";
-import { data, data2, artistData } from "@/Data/data";
+import { songs, data2, artistData } from "@/Data/data";
+
 
 export default function Home() {
-  
   
   return (
     <div className="flex-1 bg-[#1f1f1f] text-white rounded-xl h-[90vh] overflow-y-scroll">
@@ -15,16 +15,13 @@ export default function Home() {
       <div className="mt-24 px-6">
         <Slider
           title={"Trending Now"}
-          dataLength={data.length}
+          dataLength={songs.length}
           scrollSize={208}
         >
-          {data.map((item, index) => (
+          {songs.map((item, index) => (
             <MusicCard
               key={item.id}
-              title={item.title}
-              img={item.img}
-              artist={item.artist}
-              index={index}
+              data={item}
             />
           ))}
         </Slider>
@@ -36,10 +33,7 @@ export default function Home() {
           {data2.map((item, index) => (
             <MusicCard
               key={item.id}
-              title={item.title}
-              img={item.img}
-              artist={item.artist}
-              index={index}
+              data={item}
             />
           ))}
         </Slider>

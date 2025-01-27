@@ -9,19 +9,29 @@ import { CiShuffle } from "react-icons/ci";
 import { IoLogOutOutline } from "react-icons/io5";
 import { FaBluetoothB } from "react-icons/fa";
 import { FaVolumeLow } from "react-icons/fa6";
+import { IoMdPause } from "react-icons/io";
+import { useSelector } from "react-redux";
 
-const MiniMusicPlayer = ({ song }) => {
+const MiniMusicPlayer = () => {
+  const song = useSelector(state => state.miniPlayer.currSong);
   const audioRef = useRef(null);
   const progressRef = useRef(null);
   const [songPLaying, setSongPLaing] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  if(!song){
+    return
+  }
+  
+  const handleMetaDataLoad = ()=>{
+        const audioTag = audioRef.current;
+          if(audioTag){
+            setDuration(audioTag.duration || 0);
+          }
 
-  useEffect(() => {
-    const audioTag = audioRef.current;
-    setDuration(audioTag.duration || 0);
-  }, []);
+      }
+
 
   const handleProgressClick = (e) => {
     const progressBar = progressRef.current;
@@ -75,6 +85,8 @@ const MiniMusicPlayer = ({ song }) => {
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
+    console.log('playing');
+    
     return `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
   };
 
@@ -102,7 +114,8 @@ const MiniMusicPlayer = ({ song }) => {
             onClick={playSong}
             className="p-2 pl-3 hover:scale-[1.1] bg-white text-black rounded-full"
           >
-            <FaPlay />
+            {songPLaying && <IoMdPause/>}
+            {!songPLaying && <FaPlay />}
           </button>
           <button>
             <IoIosSkipForward />
@@ -114,8 +127,9 @@ const MiniMusicPlayer = ({ song }) => {
         <div className="flex items-center gap-3">
           <audio
             onTimeUpdate={handleTimeUpdate}
-            src="/song.mp3"
+            src={song.audio}
             ref={audioRef}
+            onLoadedMetadata={handleMetaDataLoad}
           ></audio>
           <span className="text-xs text-gray-400">
             {formatTime(currentTime)}
