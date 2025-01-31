@@ -35,11 +35,11 @@ const page = () => {
   return (
     <div className="flex-1 bg-[#18c9c6] text-white rounded-xl h-[90vh] overflow-y-scroll">
       {/* HEAD SECTION  */}
-      <div className="flex gap-4 items-end w-[80%] px-5 pt-20 pb-5">
+      <div className="flex gap-4 md:items-end w-[80%] px-5 pt-20 pb-5 flex-col md:flex-row">
         <img className="w-[230px] rounded-xl" src={song?.img} alt="" />
         <div>
           <span className="font-bold text-xs">SONG</span>
-          <h2 className="text-6xl font-bold my-5">{song?.title}</h2>
+          <h2 className="text-3xl md:text-6xl font-bold my-5">{song?.title}</h2>
           <div className="text-sm font-semibold">
             <span>{song?.artist}</span>
             <span>{Date.now()}</span>
@@ -47,7 +47,7 @@ const page = () => {
         </div>
       </div>
       {/* SONG INFO  */}
-      <div className="bg-[linear-gradient(#1d7776_1%,#1f1f1f)] px-5 py-7">
+      <div className="bg-[linear-gradient(#1d7776_1%,#1f1f1f)] px-3 md:px-5 py-7">
         {/* SONG CONTROLS  */}
         <div className="flex gap-3 text-xl items-center">
           <div className="p-5 rounded-full bg-[#3bcbc8] text-black">
@@ -63,11 +63,11 @@ const page = () => {
           </div>
         </div>
 
-        <div className="w-full flex justify-between">
+        <div className="w-full flex justify-between flex-col md:flex-row">
           {/* LYRICS  */}
-          <div className="py-7 w-[45%]">
+          <div className="py-7 md:w-[45%]">
             <h2 className="text-2xl mb-5 font-bold">Lyrics</h2>
-            <pre className="text-lg">
+            <div className="text-lg w-full">
               Gimme, gimme, gimme some time to think <br />
               I'm in the bathroom, looking at me <br />
               Face in the mirror is all I need <br />
@@ -102,11 +102,11 @@ const page = () => {
               <br /> 'Cause there's magic in my bones <br />
               'Cause there's magic in my bones <br /> Look in the mirror of my
               mind <br />
-            </pre>
+            </div>
           </div>
 
           {/* ARTIST  */}
-          <div className="py-5 w-[45%]">
+          <div className="py-5 md:w-[45%]">
             <div className="flex gap-4 items-center">
               <img
                 className="w-[120px] rounded-full"
