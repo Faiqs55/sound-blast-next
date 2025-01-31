@@ -11,7 +11,7 @@ const page = () => {
       {/* CONTENT  */}
       <div className="p-4 mt-24">
         <h2 className="font-bold text-2xl">{'Trending Now'}</h2>
-        <div className="flex flex-wrap justify-between gap-10 pt-5">
+        <div className="flex flex-wrap justify-around lg:justify-between gap-5 lg:gap-10 pt-5">
             {songs.map((song, index) => (
                 <BigCard song={song} key={song.id}/>
             ))}
