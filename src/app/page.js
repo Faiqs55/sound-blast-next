@@ -3,7 +3,7 @@ import BreadCrumbs from "@/Components/BreadCrumbs";
 import Footer from "@/Components/Footer";
 import MusicCard from "@/Components/MusicCard";
 import Slider from "@/Components/Slider";
-import { songs, data2, artistData } from "@/Data/data";
+import { songs, artistData, albums } from "@/Data/data";
 
 
 export default function Home() {
@@ -29,8 +29,8 @@ export default function Home() {
 
       {/* TOP ALBUMS  */}
       <div className="mt-10 px-6">
-        <Slider title={"Top Albums"} dataLength={data2.length} scrollSize={208}>
-          {data2.map((item, index) => (
+        <Slider title={"Top Albums"} dataLength={albums.length} scrollSize={208}>
+          {albums.map((item, index) => (
             <MusicCard
               key={item.id}
               data={item}
@@ -42,7 +42,7 @@ export default function Home() {
       
       {/* TOP Artists  */}
       <div className="mt-10 px-6">
-        <Slider title={"Top Artists"} dataLength={artistData.length} scrollSize={178}>
+        <Slider title={"Top Artists"} dataLength={artistData.length} scrollSize={50}>
           {artistData.map((item, index) => (
             <ArtistCard index={index} name={item.name} key={item.id} img={item.img} />
           ))}

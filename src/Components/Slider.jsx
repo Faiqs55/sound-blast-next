@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Slider = ({dataLength, title, scrollSize, children }) => {
@@ -46,10 +47,10 @@ const Slider = ({dataLength, title, scrollSize, children }) => {
   };
 
   return (
-    <div className=" overflow-hidden w-full duration-300 relative">
+    <div className="overflow-hidden w-full duration-300 relative">
       <div className="flex items-center justify-between">
        <h2 className="text-2xl font-bold pl-3">{title}</h2>
-       <span className="font-semibold text-sm text-gray-300">See All</span>
+       <span className="font-semibold text-sm text-gray-300"><Link href={'/songs'}>See All</Link></span>
       </div>
       {currSlide > 0 && (
         <button
@@ -69,7 +70,7 @@ const Slider = ({dataLength, title, scrollSize, children }) => {
       )}
       <div
         style={{ transform: `translateX(-${currSlide * scrollSize}px)` }}
-        className={`mt-3 w-full flex gap-2 duration-300`}
+        className={`mt-3 w-full flex gap-2 duration-300 justify-between`}
       >
         {children}
       </div>
