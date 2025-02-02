@@ -5,7 +5,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    await connectToDB();
+    setTimeout(async ()=>{
+      await connectToDB();
     const { name, email, password, role } = await req.json();
     const newUser = await userModel.create({
       name,
@@ -19,6 +20,8 @@ export async function POST(req) {
       favAlbums: [],
     });
     return NextResponse.json(newUser);
+    }, 0);
+    return NextResponse.json({msg: 'this is msg'})
   } catch (error) {
     return Response.json(error)
   }
