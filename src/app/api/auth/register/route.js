@@ -3,9 +3,10 @@ import { connectToDB } from "@/lib/db/mongo";
 import userModel from "@/lib/db/models/user";
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req) {
   try {
-    setTimeout(async ()=>{
       await connectToDB();
     const { name, email, password, role } = await req.json();
     const newUser = await userModel.create({
@@ -20,8 +21,6 @@ export async function POST(req) {
       favAlbums: [],
     });
     return NextResponse.json(newUser);
-    }, 0);
-    return NextResponse.json({msg: 'this is msg'})
   } catch (error) {
     return Response.json(error)
   }

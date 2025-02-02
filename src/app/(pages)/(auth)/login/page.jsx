@@ -1,12 +1,10 @@
 "use client";
 import userAuth from "@/utils/auth";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const page = () => {
   const [userData, setUserData] = useState(null);
-  const router = useRouter();
 
   const inputChangeHandler = (e) => {
       const {name, value} = e.target;
@@ -23,7 +21,7 @@ const page = () => {
     const userToken = await userAuth.userLogin(userData);
     if(userToken.token){
       localStorage.setItem('token', userToken.token);
-      router.push("/")
+      window.location.replace('/');
     }else{
       console.log(userToken);
     }

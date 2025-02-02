@@ -35,8 +35,10 @@ class AuthService {
       const response = await fetch("/api/auth/get-user", {
         method: 'GET',
         headers: {"authorization": localStorage.getItem('token')}
-      });
+      });      
+      
       this.user = await response.json();
+      
       return this.user;
     } catch (error) {
       return error

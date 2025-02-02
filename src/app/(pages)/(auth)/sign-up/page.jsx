@@ -20,11 +20,11 @@ const page = () => {
       const user = await userAuth.userSignup(userData);
       if(user._id){
         const token = await userAuth.userLogin({email: userData.email, password: userData.password});
-        console.log(token);
+        localStorage.setItem('token', token.token);
+        window.location.replace('/');
         
       }else{
         console.log(user.errorResponse.errmsg);
-        
       }
   }
 

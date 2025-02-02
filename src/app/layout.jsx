@@ -1,25 +1,26 @@
-import './globals.css'
+import "./globals.css";
+import StoreProvider from "./StoreProvider";
 
 export const metadata = {
-    title: "SoundBlast | Home",
-    description: "Music The Real Magic",
-  };
+  title: "SoundBlast | Home",
+  description: "Music The Real Magic",
+};
 
-const layout = ({children}) => {
+const layout = ({ children }) => {
   return (
     <html>
-        <head>
+      <head>
         <link
           rel="shortcut icon"
           href="/soundBlast-logo-neon.png"
           type="image/x-icon"
         />
-        </head>
-        <body>
-            {children}
-        </body>
+      </head>
+      <StoreProvider>
+        <body>{children}</body>
+      </StoreProvider>
     </html>
-  )
-}
+  );
+};
 
-export default layout
+export default layout;

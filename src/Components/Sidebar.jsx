@@ -9,9 +9,11 @@ import { GiHeartInside } from "react-icons/gi";
 import { MdWhatshot } from "react-icons/md";
 import { GiLoveSong } from "react-icons/gi";
 import { IoAlbumsSharp } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const [menuOpen, setMenuOpen] = useState(true);
+  const loggedIn = useSelector(state => state.userReducer.isLoggedIn);
 
   useEffect(()=>{
      let screenSize = screen.availWidth;
@@ -112,7 +114,7 @@ const Sidebar = () => {
             {menuOpen ? "Trending Now" : ""}
           </Link>
         </li>
-        <li className="hover:text-[#08dcda] duration-300">
+        {loggedIn && <li className="hover:text-[#08dcda] duration-300">
           <Link
             className={`w-full flex items-center gap-3 duration-300 py-2 hover:bg-[#444] ${
               menuOpen ? "pl-12" : "justify-center"
@@ -122,8 +124,8 @@ const Sidebar = () => {
             <GiLoveSong className="text-2xl" />
             {menuOpen ? "Fav Songs" : ""}
           </Link>
-        </li>
-        <li className="hover:text-[#08dcda] duration-300">
+        </li>}
+        {loggedIn && <li className="hover:text-[#08dcda] duration-300">
           <Link
             className={`w-full flex items-center gap-3 duration-300 py-2 hover:bg-[#444] ${
               menuOpen ? "pl-12" : "justify-center"
@@ -133,7 +135,7 @@ const Sidebar = () => {
             <IoAlbumsSharp className="text-2xl" />
             {menuOpen ? "Fav Albums" : ""}
           </Link>
-        </li>
+        </li>}
       </ul>
     </div>
   );

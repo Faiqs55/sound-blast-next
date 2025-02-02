@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs";
 import { connectToDB } from "@/lib/db/mongo";
 import userModel from "@/lib/db/models/user";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req) {
     try {
         connectToDB();
