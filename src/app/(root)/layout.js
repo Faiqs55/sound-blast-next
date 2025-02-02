@@ -1,26 +1,13 @@
 import Navbar from "@/Components/Navbar";
-import "./globals.css";
 import Sidebar from "@/Components/Sidebar";
 import MiniMusicPlayer from "@/Components/MiniMusicPlayer";
 import { songs } from "@/Data/data";
-import StoreProvider from "./StoreProvider";
-
-export const metadata = {
-  title: "SoundBlast | Home",
-  description: "Music The Real Magic",
-};
+import StoreProvider from "../StoreProvider";
 
 export default function RootLayout({ children }) {
+
   return (
-    <html lang="en">
-      <head>
-        <link
-          rel="shortcut icon"
-          href="/soundBlast-logo-neon.png"
-          type="image/x-icon"
-        />
-      </head>
-      <body className={`bg-black`}>
+      <div className={`bg-black`}>
          <StoreProvider>
            {/* NAVBAR  */}
            <Navbar />
@@ -34,7 +21,6 @@ export default function RootLayout({ children }) {
             <MiniMusicPlayer songa={songs[0]} />
           </div>
          </StoreProvider>
-      </body>
-    </html>
+      </div>
   );
 }

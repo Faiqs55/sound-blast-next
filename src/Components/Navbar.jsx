@@ -1,9 +1,10 @@
-import Image from 'next/image'
+"use client";
 import React from 'react'
 import { GoHomeFill } from "react-icons/go";
 import { FiSearch } from "react-icons/fi";
 import { CiSaveDown1 } from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
+import Link from 'next/link';
 
 
 const Navbar = () => {
@@ -29,10 +30,11 @@ const Navbar = () => {
         <div className='flex items-center gap-5'>
             <span className='bg-white hidden text-black text-sm px-4 cursor-pointer hover:scale-[1.1] hover:bg-slate-100 duration-300 py-2 rounded-full font-bold md:flex items-center'>Explore Premium</span>
             <span className='hidden md:flex items-center gap-1 font-semibold'><CiSaveDown1 className='text-xl' />Install App</span>
-            <IoIosNotificationsOutline className='text-2xl font-bold hidden md:block' />
+            {/* <IoIosNotificationsOutline className='text-2xl font-bold hidden md:block' />
             <div className='p-2 bg-[#3f3f3f] rounded-full'>
                 <div className='bg-pink-400 text-black font-semibold px-3 py-1 rounded-full'>F</div>
-            </div>
+            </div> */}
+            <Link href={'/login'} className='font-semibold text-sm border-2 px-6 duration-300 hover:bg-[#09dedf] hover:text-white border-[#09dedf] text-[#09dedf] py-1'>Login</Link>
         </div>
       </div>  
     </nav>

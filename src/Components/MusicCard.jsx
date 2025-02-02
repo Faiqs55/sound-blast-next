@@ -17,7 +17,7 @@ const MusicCard = ({ data }) => {
       />
       <span className=" mt-2">{data.title}</span>
       <span className="text-xs text-gray-400">{data.artist}</span>
-      <div onClick={() => {dispatch(playOnMiniPlayer(data))}} className=" opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 hover:scale-[1.1] hover:bg-[#3bcbc8] w-12 h-12 bg-[#08dcda] absolute rounded-full z-10 right-5 bottom-20 group-hover:bottom-24">
+      <div onClick={() => {dispatch(playOnMiniPlayer(data))}} className=" opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 hover:scale-[1.1] hover:bg-[#3bcbc8] w-12 h-12 bg-[#08dcda] absolute rounded-full z-[100] right-5 bottom-20 group-hover:bottom-24">
         <FaPlay className="text-black text-xl" />
       </div>
     </Link>
