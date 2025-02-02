@@ -8,6 +8,7 @@ export async function POST(req) {
         connectToDB();
         const {email, password} = await req.json();
         const user = await userModel.findOne({email});
+        
         if(!user){
            return Response.json({error: 'Invalid Email'}, {status: 404});
         }
@@ -15,11 +16,11 @@ export async function POST(req) {
         if(!isMatched){
            return Response.json({error: 'Invalid Password'}, {status: 401});
         }else{
-            const token = jwt.sign({id: user._id, email: user.email}, process.env.JWT_SECRET, {expiresIn: '12h'});
+            const token = jwt.sign({user}, process.env.JWT_SECRET, {expiresIn: '12h'});
             return Response.json({token})
         }
 
     } catch (error) {
-       return Response.json({error});
+       return Response.json({error: 'login failed'});
     }
 }
